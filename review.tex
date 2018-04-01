@@ -183,8 +183,8 @@ Least Squares Regression in CART
 \includegraphics{dist}
 
 \section{ML Methodology}
-\subsection{Topics}
-\begin{enumerate}
+\subsection{Goals}
+\begin{itemize}
 \item bias of an estimator
 \item test sets
 \item learning curves
@@ -197,13 +197,101 @@ Least Squares Regression in CART
 \item true positive rate (TPR)
 \item positive predictive value (PPV)
 \item false positive rate (FPR)
-\end{enumerate}
+\end{itemize}
 
 \subsection{Notes}
-\begin{enumerate}
+\begin{itemize}
+
 \item Bias of an estimator \\
-  includegraphics{bias}
-\end{enumerate}
+  \includegraphics{bias}
+
+\item \textbf{Learning curves}: Assesses the accuracy of a learning
+  method as a function of training-set size. Randomly select $s$
+  instances from train set and train, eval on test set. Repeat $n$
+  times (optional)
+
+\item \textbf{Stratified Sampling}: Ensure that class proportions are
+  maintained in training and validation sets
+
+\item \textbf{Cross Validation}: Partition data into n subsamples,
+  iteratively leave on sub-sample out for the test set, train on rest
+  \begin{itemize}
+  \item 10-fold is common when learning is not time-consuming
+  \item leave-one-out: n = num instances
+  \item stratified cross val
+  \item \textbf{NOTE}: CV evaluates a learning method, not
+    individually learned model
+  \end{itemize}
+
+\item Confusion Matricies help us understand what types of mistakes a
+  learned model makes \\
+  \includegraphics{cm1}
+
+\item When is accuracy a bad measure?
+  \begin{itemize}
+  \item there is a large class skew
+  \item differential misclassifaction costs (ie medical domain)
+  \item most interested in subset of high-confidence predictions
+  \end{itemize}
+
+\item Alternative accuracy metrics \\
+  \includegraphics{tpfp}
+  \begin{itemize}
+  \item \textbf{ROC curves}: TP vs FP, Order instances according to predicted
+    positive confidence. Thresholds are where there is a pos instance
+    on high side, neg on low side \\
+    \includegraphics[scale=0.75]{roc}
+
+  \item \textbf{Precision/recall curves} \\
+    \includegraphics{pr}
+
+  \item ROC vs PR curve comparison: \\
+    \includegraphics[scale=0.75]{compare} \\
+    tl;dr: ROC good for varied distributions, PR good for many
+    negative instances
+  \end{itemize}
+\end{itemize}
+
+\subsection{Equations}
+
+\section{ML Methology (pt2)}
+\subsection{Goals}
+\begin{itemize}
+\item confidence intervals for error
+\item pairwise t-tests for comparing learning systems
+\item scatter plots for comparing learning systems
+\item lesion studies
+\item model selection
+\item validation (tuning) sets
+\item internal cross validation
+\end{itemize}
+
+\subsection{Notes}
+
+\begin{itemize}
+\item Confidence intervals on error \\
+  Given n (>30) test instances, and r = num errors: \\
+  \includegraphics[scale=0.75]{cierr} \\
+  \includegraphics[scale=0.75]{cierr2}
+
+\item Paired T-Test for comparison \\
+  \includegraphics{ttest} \\
+  Note: a statistically signifcant difference isn't necessarily a
+  large magnitude difference
+
+\item Lesion studies: we can gain inishgt into what contributes to a
+  learning system's performance by removing components of it \\
+  Ask:
+  \begin{enumerate}
+  \item Is my held-aside test data representative of new data?
+  \item Did I repeat data processing for every CV-fold?
+  \item Have I modified my algo so much that I am overfitting?
+  \end{enumerate}
+
+\item Model selection
+  
+  
+\end{itemize}
 
 \subsection{Equations}
     
